@@ -1,8 +1,16 @@
 //! Session management.
+//!
+//! This struct holds runtime-only session state (active model handle,
+//! tool budget, streaming state, etc.). Persistable session data should
+//! live in `otter_core::SessionRecord`.
+//!
+//! TODO: When store is wired, load/save should round-trip through
+//! `SessionRecord` and the daemon should own the conversion between
+//! `SessionRecord` (persistence) and `Session` (runtime).
 
 use otter_core::{MessageId, ResponseMode, SessionId};
 
-/// A coding session.
+/// A live coding session. Runtime state only.
 pub struct Session {
     pub id: SessionId,
     pub response_mode: ResponseMode,

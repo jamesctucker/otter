@@ -1,7 +1,9 @@
 //! llama.cpp provider implementation.
 
 use async_trait::async_trait;
-use otter_core::{ModelId, ModelInfo, ModelProvider, Provider, ProviderError};
+use otter_core::{
+    InferenceRequest, InferenceStream, ModelId, ModelInfo, ModelProvider, Provider, ProviderError,
+};
 
 /// Provider adapter for llama.cpp HTTP server.
 pub struct LlamaCppProvider {
@@ -32,9 +34,14 @@ impl ModelProvider for LlamaCppProvider {
         Ok(Vec::new())
     }
 
-    async fn is_ready(&self, _model_id: &ModelId) -> bool {
+    async fn is_ready(&self, _model_id: &ModelId) -> Result<bool, ProviderError> {
         // TODO: Ping model endpoint, check health
-        false
+        Ok(false)
+    }
+
+    async fn complete(&self, _request: InferenceRequest) -> Result<InferenceStream, ProviderError> {
+        // TODO: POST to llama.cpp /completion, parse SSE stream, yield InferenceEvents
+        Err(ProviderError::RequestFailed("not implemented".to_string()))
     }
 
     fn provider_type(&self) -> Provider {

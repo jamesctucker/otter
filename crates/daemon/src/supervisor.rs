@@ -5,6 +5,20 @@
 //! - Starting and stopping llama.cpp processes
 //! - Warming and cooling models
 //! - Tracking ports, PIDs, health, and lease state
+//!
+//! # Dependency direction
+//!
+//! `ModelSupervisor` is daemon-owned. It depends on provider crates
+//! (e.g. `otter-provider-llamacpp`) to create provider instances after
+//! spawning a backend process. Provider crates must never depend on the
+//! supervisor or the daemon. The flow is:
+//!
+//! ```text
+//! daemon::ModelSupervisor
+//!   -> spawns llama.cpp process
+//!   -> constructs LlamaCppProvider(base_url)
+//!   -> hands provider to daemon routing layer
+//! ```
 
 use otter_core::{ModelId, ModelInfo};
 

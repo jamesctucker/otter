@@ -25,3 +25,4 @@ anyhow = "1.0"
 uuid = { version = "1.6", features = ["v4", "serde"] }
 async-trait = "0.1"
 tokio = "1.35"
+futures-core = "0.3"
