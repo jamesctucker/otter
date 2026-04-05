@@ -1,0 +1,42 @@
+# Rust / Cargo
+/target/
+debug/
+**/*.rs.bk
+*.pdb
+
+# Environment / local config
+.env
+.env.*
+!.env.example
+
+# SQLite / local runtime state
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Logs / temp
+*.log
+tmp/
+temp/
+.tmp/
+
+# Editors / IDEs
+.DS_Store
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# Direnv
+.direnv/
+
+# Process/runtime artifacts
+*.pid
+*.sock
+
+# Optional local notes / scratch files
+scratch/
+notes.local.md
