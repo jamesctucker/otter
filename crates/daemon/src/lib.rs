@@ -3,26 +3,15 @@
 //! This crate owns session state, context assembly, policy,
 //! provider routing, tool supervision, and streaming.
 //!
-//! TODO: Implement full runtime behavior.
+//! NOTE: Tracing subscriber initialization belongs in the CLI binary,
+//! not here. Library/daemon code should only emit traces, not configure sinks.
 
+pub mod config;
 mod daemon;
 mod session;
 mod supervisor;
 
+pub use config::OtterConfig;
 pub use daemon::Daemon;
 pub use session::Session;
 pub use supervisor::ModelSupervisor;
-
-pub fn run() -> anyhow::Result<()> {
-    tracing_subscriber::fmt::init();
-
-    tracing::info!("otter daemon starting");
-
-    // TODO: Implement actual daemon startup
-    // - Load configuration
-    // - Initialize model supervisor
-    // - Start HTTP server
-    // - Accept client connections
-
-    Ok(())
-}
