@@ -83,3 +83,23 @@ Consequences:
 - Faster path to value.
 - Lower complexity.
 - Clearer basis for evaluating whether graph methods are actually needed.
+
+***
+
+## Checkpoint: foundation + health slice
+
+State:
+
+- Workspace scaffold is stable.
+- Core inference contracts exist.
+- Provider trait supports completion.
+- Session persistence boundary is clearer.
+- daemon-owned config exists.
+- provider-llamacpp health/list-models path is wired.
+- tracing initialization is binary-owned.
+
+Next:
+
+- Wire ModelSupervisor to config.
+- Decide whether to spawn llama.cpp or assume existing endpoint.
+- Add a tiny end-to-end daemon startup path before streaming.
